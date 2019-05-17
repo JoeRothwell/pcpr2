@@ -4,6 +4,8 @@
 #' @param X A matrix of omics data. It is recommended that the data be approriately scaled and log transformed if necessary.
 #' @param Y The metadata variables whose influence on matrix X is to be assessed. Variables should be converted to factors where necessary.
 #' @param pct_threshold The proportion of variability desired to be explained. Defaults to 0.8.
+#' @keywords pcpr2
+#' @export
 #' @examples runPCPR2(Xtestdata, Ytestdata)
 
 runPCPR2 <- function(X, Y, pct_threshold = 0.8) {

@@ -11,3 +11,5 @@ Imports:
   car (>= 3.0.2),
   MetabolAnalyze (>= 1.3),
   tidyverse (>= 1.2.1)
+Collate:
+  runPCPR2.R
