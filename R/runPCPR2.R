@@ -1,18 +1,14 @@
 #' The Principal Component R-squared method (PC-PR2)
 #'
-#' Runs PC-PR2 on X, an omics matrix of intensities, and Y, the subject metadata to be assessed in the model.
-#' @param X A matrix of omics data. It is recommended that the data be approriately scaled and log transformed if necessary.
-#' @param Y The metadata variables whose influence on matrix X is to be assessed. Variables should be converted to factors where necessary.
+#' Runs the PC-PR2 method on X, an omics matrix of intensities, and Y, the subject metadata to be assessed in the model.
+#' @param X A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.
+#' @param Y The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.
 #' @param pct_threshold The proportion of variability desired to be explained. Defaults to 0.8.
-#' @keywords pcpr2
+#' @keywords pcpr2, principal component analysis, pca, omics, metabolomics, transcriptomics
+#' @examples output <- runPCPR2(transcripts, Y_metadata)
+#' @examples output
 #' @export
-#' @examples runPCPR2(Xtestdata, Ytestdata)
-
 runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
-
-  library(car)
-  library(MetabolAnalyze)
-  library(tidyverse)
 
   # Load the data in the X matrix containing NMR spectra and Z matrix containing the list of explanatory variables of interest
   #myPath <- "Documents/PCPR2/" Metabolomics_data <- "X_MetaboMatrix.TXT"
@@ -33,6 +29,7 @@ runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
   Z_MetaRowN <- nrow(Z_Meta)
   Z_MetaColN <- ncol(Z_Meta)
   ColNames   <- names(Z_Meta)
+  #ColNames1  <- c(ColNames, "Rmodel2")
 
   # Obtain eigenvectors
   pct_threshold <- 0.8 # set variability desired to be explained
@@ -64,7 +61,7 @@ runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
   multifit <- lm(pc_data_matrix ~ ., data = Z_Meta)
 
   # Run type 3 ANOVA on each PC
-  AnovaTab <- Anova(multifit, type=3, singular.ok = F)
+  AnovaTab <- car::Anova(multifit, type=3, singular.ok = F)
   SSP      <- AnovaTab$SSP
 
   # Extract sum of squares for each factor, removing intercept column
@@ -84,4 +81,22 @@ runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
   partialR2MatWtProp <- cbind(partialR2mat, ST_ResidualR2[, 1]) * weight
   colnames(partialR2MatWtProp) <- NULL
   pR2Sums <- colSums(partialR2MatWtProp) * 100
+  names(pR2Sums) <- c(ColNames, "R2")
+  return(pR2Sums)
+}
+
+#' Plot PC-PR2 output
+#'
+#' A wrapper for barplot() that plots PC-PR2 output.
+#' @export
+#' @param Rpartial2 Named vector of partial R2 values generated from runPCPR2().
+#' @param ... Other arguments passed to barplot().
+#' @examples plotProp(output)
+#' @export
+plotProp <- function(Rpartial2, ...) {
+  bp <- barplot(unname(Rpartial2), ylab = "Weighted Rpartial2", ylim = c(0, max(Rpartial2) * 1.3),
+                xlab = "", col = "red", las=2)
+  axis(1, at = bp, labels = c(names(Rpartial2)), cex.axis = 0.8, las=2)
+  rounded <- round(Rpartial2, 3)
+  text(bp, Rpartial2, labels = rounded, pos = 3, cex = 0.8)
 }
