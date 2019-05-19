@@ -20,6 +20,7 @@ PC-PR2 is performed using the function `runPCPR2` which outputs partial R2 value
 A subset of a transcriptomics dataset is provided as an example.
 
 ````r
+library(pcpr2)
 output <- runPCPR2(transcripts, Y_metadata)
 output
            sex         height         weight smoking.status     age.sample             R2 
