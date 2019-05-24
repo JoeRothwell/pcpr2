@@ -17,3 +17,6 @@ A wrapper for barplot() that plots PC-PR2 output.
 \examples{
 plotProp(output)
 }
+\seealso{
+\code{\link{barplot}} which this function wraps.
+}
