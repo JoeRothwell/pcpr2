@@ -8,7 +8,7 @@
 #' @examples output <- runPCPR2(transcripts, Y_metadata)
 #' @examples output
 #' @export
-runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
+runPCPR2 <- function(X, Y, pct.threshold = 0.8) {
 
   # Load the data in the X matrix containing NMR spectra and Z matrix containing the list of explanatory variables of interest
   #myPath <- "Documents/PCPR2/" Metabolomics_data <- "X_MetaboMatrix.TXT"
@@ -32,7 +32,7 @@ runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
   #ColNames1  <- c(ColNames, "Rmodel2")
 
   # Obtain eigenvectors
-  pct_threshold <- 0.8 # set variability desired to be explained
+  pct.threshold <- 0.8 # set variability desired to be explained
   X_DataMatrixScaled_t <- t(X_DataMatrixScaled)
   symMat <- X_DataMatrixScaled %*% X_DataMatrixScaled_t
   eigenData    <- eigen(symMat)
@@ -88,14 +88,14 @@ runPCPR2 <- function(X, Y, pct_threshold = 0.8) {
 #' Plot PC-PR2 output
 #'
 #' A wrapper for barplot() that plots PC-PR2 output.
-#' @export
 #' @param Rpartial2 Named vector of partial R2 values generated from runPCPR2().
 #' @param ... Other arguments passed to barplot().
 #' @examples plotProp(output)
+#' @seealso \code{\link{barplot}} which this function wraps.
 #' @export
 plotProp <- function(Rpartial2, ...) {
   bp <- barplot(unname(Rpartial2), ylab = "Weighted Rpartial2", ylim = c(0, max(Rpartial2) * 1.3),
-                xlab = "", col = "red", las=2)
+                xlab = "", col = "red", las=2, ...)
   axis(1, at = bp, labels = c(names(Rpartial2)), cex.axis = 0.8, las=2)
   rounded <- round(Rpartial2, 3)
   text(bp, Rpartial2, labels = rounded, pos = 3, cex = 0.8)
