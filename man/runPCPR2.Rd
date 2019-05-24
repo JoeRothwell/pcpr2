@@ -4,7 +4,7 @@
 \alias{runPCPR2}
 \title{The Principal Component R-squared method (PC-PR2)}
 \usage{
-runPCPR2(X, Y, pct_threshold = 0.8)
+runPCPR2(X, Y, pct.threshold = 0.8)
 }
 \arguments{
 \item{X}{A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.}
