@@ -1,10 +1,9 @@
-# The Principal Component Partial R-squared method 
-# (PC-PR2)
+# The Principal Component Partial R-squared method <br /> (PC-PR2)
 
 
 #### Background
 
-The PC-PR2 is a statistical method, developed by Fages *et al*. (2014) (1, 2), used to investigate sources of variability in metabolomics or other omics data. It combines features of principal component and multivariable linear regression analyses. The input is a complete X-matrix of omics data and a corresponding set of descriptive Y-data (subject metadata). The output is the proportion of variation in the omics data attributed to each Y-variable, expressed as Rpartial2.
+The PC-PR2 is a statistical method, developed by Fages *et al*. (1), used to investigate sources of variability in metabolomics or other omics data (1,2). It combines features of principal component and multivariable linear regression analyses. The input is a complete X-matrix of omics data and a corresponding set of descriptive Y-data (subject metadata). The output is the proportion of variation in the omics data attributed to each Y-variable, expressed as Rpartial2.
 
 Test data, consisting of a sample of a transcriptomics dataset, is also included. This consists of five descriptive variables for the 124 subjects (two categorical, three numeric) and 3000 corresponding transcriptomics intensities.
 
@@ -24,7 +23,7 @@ install_github("JoeRothwell/pcpr2")
 
 You may be prompted to update other packages.
 
-PC-PR2 is performed using the function `runPCPR2` which outputs partial R2 values for each covariate as a named vector. The variability in the omics data desired to be explained can be set with the argument `pct_threshold`, which defaults to 0.8.
+PC-PR2 is performed using the function `runPCPR2` which outputs partial R2 values for each covariate as a named vector. The variability in the omics data desired to be explained can be set with the argument `pct.threshold`, which defaults to 0.8.
 
 A sample of transcriptomics data is provided as an example.
 
