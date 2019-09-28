@@ -5,7 +5,7 @@
 
 The PC-PR2 is a statistical method, developed by Fages et al. (1), for investigating sources of variability in metabolomics or other omics data (1,2). It combines features of principal component and multivariable linear regression analyses to estimate the relative effects of each of a set of Y-variables upon a large matrix of omics measurements. 
 
-The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete X-matrix of omics data and a corresponding set of descriptive Y-data (subject metadata) is passed to the main function `runPCPR2()`. The output is the proportion of variation in the omics data attributed to each Y-variable, expressed as R~partial~^2^. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
+The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete X-matrix of omics data and a corresponding set of descriptive Y-data (subject metadata) is passed to the main function `runPCPR2()`. The output is the proportion of variation in the omics data attributed to each Y-variable, expressed as R<sub>partial</sub><sup>2</sup>. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
 
 Test data, consisting of a sample of a transcriptomics dataset, is also included. This consists of five descriptive variables for the 124 subjects (two categorical, three numeric) and 3000 corresponding transcriptomics intensities.
 
@@ -25,7 +25,7 @@ install_github("JoeRothwell/pcpr2")
 
 You may be prompted to update other packages.
 
-PC-PR2 is performed using the function `runPCPR2()` which outputs partial R^2^ values for each covariate as a named vector. The variability in the omics data desired to be explained can be set with the argument `pct.threshold`, which is optional and defaults to 0.8.
+PC-PR2 is performed using the function `runPCPR2()` which outputs partial R<sup>2</sup> values for each covariate as a named vector. The variability in the omics data desired to be explained can be set with the argument `pct.threshold`, which is optional and defaults to 0.8.
 
 A sample of transcriptomics data is provided as an example.
 
