@@ -1,16 +1,18 @@
 #' The Principal Component R-squared method (PC-PR2)
 #'
-#' Runs the PC-PR2 method on X, an omics matrix of intensities, and Y, the subject metadata to be assessed in the model.
+#' Runs the PC-PR2 method on X, an omics matrix of intensities, and Z, the subject metadata to be assessed in the model.
 #' @param X A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.
-#' @param Y The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.
+#' @param Z The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.
 #' @param pct_threshold The proportion of variability desired to be explained. Defaults to 0.8.
 #' @keywords pcpr2, principal component analysis, pca, omics, metabolomics, transcriptomics
-#' @examples output <- runPCPR2(transcripts, Y_metadata)
+#' @examples output <- runPCPR2(transcripts, Z_metadata)
 #' @examples output
 #' @export
-runPCPR2 <- function(X, Y, pct.threshold = 0.8) {
+runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
 
-  # Load the data in the X matrix containing NMR spectra and Z matrix containing the list of explanatory variables of interest
+  # The following lines are not used but have been kept from the original script
+  # Scaling and centering should now be done outside the analysis
+  # Load the data in the X matrix containing NMR spectra and Z metadata containing the list of explanatory variables of interest
   #myPath <- "Documents/PCPR2/" Metabolomics_data <- "X_MetaboMatrix.TXT"
   #InterestFactors_data <- "Z_FactorMatrix.TXT"
   #Metabo_FilePath = paste(myPath,Metabolomics_data, sep="")
@@ -24,7 +26,7 @@ runPCPR2 <- function(X, Y, pct.threshold = 0.8) {
 
   # Load test data
   X_DataMatrixScaled <- X
-  Z_Meta <- Y
+  Z_Meta <- Z
 
   Z_MetaRowN <- nrow(Z_Meta)
   Z_MetaColN <- ncol(Z_Meta)
@@ -85,7 +87,7 @@ runPCPR2 <- function(X, Y, pct.threshold = 0.8) {
   return(pR2Sums)
 }
 
-#' Plot PC-PR2 output
+#' Plot PC-PR2 output (to be deprecated in favour of an S3 class plot method)
 #'
 #' A wrapper for barplot() that plots PC-PR2 output.
 #' @param Rpartial2 Named vector of partial R2 values generated from runPCPR2().
