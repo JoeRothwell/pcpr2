@@ -13,6 +13,14 @@ runPCPR2(X, Z, pct.threshold = 0.8)
 
 \item{pct_threshold}{The proportion of variability desired to be explained. Defaults to 0.8.}
 }
+\value{
+return a list with 5 elements:
+\item{dimensions}{dimensions of the -omics matrix}
+\item{types}{data types for each Z-variable}
+\item{threshold}{the chosen variability to be explained}
+\item{pcn}{the number of principal components used for the chosen threshold}
+\item{pR2}{Rpartial2 values for each Z-variable and the overall R2}
+}
 \description{
 Runs the PC-PR2 method on X, an omics matrix of intensities, and Z, the subject metadata to be assessed in the model.
 }
