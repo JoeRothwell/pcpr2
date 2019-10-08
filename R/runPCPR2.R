@@ -6,7 +6,7 @@
 #' @param pct.threshold The proportion of variability desired to be explained. Defaults to 0.8.
 #' @keywords pcpr2, Rpartial2, principal component analysis, pca, omics, metabolomics, transcriptomics
 #' @examples output <- runPCPR2(transcripts, Z_metadata)
-#' @examples output
+#' @examples output$pR2
 #' @export
 #' @return Returns a list with 5 elements:
 #' \item{dimensions}{dimensions of the -omics matrix}
