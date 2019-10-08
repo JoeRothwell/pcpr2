@@ -3,11 +3,11 @@
 
 #### Background
 
-The PC-PR2 is a statistical method, developed by Fages et al. (1), for investigating sources of variability in metabolomics or other omics data (1,2). It combines features of principal component and multivariable linear regression analyses to estimate the relative effects of each of a set of Y-variables upon a large matrix of omics measurements. 
+The PC-PR2 is a statistical method, developed by Fages & Ferrari et al. (1), for investigating sources of variability in metabolomics or other omics data (1,2). In brief, it combines features of principal component and multivariable linear regression analyses to estimate the relative effects of metadata variables upon a large matrix of omics measurements. 
 
-The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete matrix of omics data, denoted X, and a corresponding table of subject metadata, denoted Z, are passed to the main function `runPCPR2()`. The main output is the proportion of variation in the omics data attributed to each Z-variable, expressed as R~partial~^2^. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
+The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete matrix of omics data, denoted X, and a corresponding table of subject metadata, denoted Z, are passed to the function `runPCPR2()`. The main output is the proportion of variation in the omics data attributed to each Z-variable, expressed as R~partial~^2^. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
 
-Test data, consisting of a sample of a transcriptomics dataset, is also included. This consists of five descriptive variables for the 124 subjects (two categorical, three numeric) and 3000 corresponding transcriptomics intensities.
+Test data, consisting of a sample of a transcriptomics dataset, is also included. This consists of five descriptive Z-variables for the 124 subjects (two categorical, three numeric) and a matrix of 3000 corresponding transcriptomics intensities.
 
 #### Installation and usage
 
@@ -48,7 +48,7 @@ plotProp(output, main = "Variability in transcriptomics data explained by covari
 
 #### References
 
-(1) Fages et al (2014) Investigating sources of variability in metabolomic data in the EPIC study: the Principal Component Partial R-square (PC-PR2) method. *Metabolomics* 10(6): 1074-1083, DOI: 10.1007/s11306-014-0647-9
+(1) Fages & Ferrari et al (2014) Investigating sources of variability in metabolomic data in the EPIC study: the Principal Component Partial R-square (PC-PR2) method. *Metabolomics* 10(6): 1074-1083, DOI: 10.1007/s11306-014-0647-9
 
 (2) Perrier et al (2018) Identifying and correcting epigenetics measurements for systematic sources of variation.
 *Clin Epigenetics* 21(10): 38, DOI: 10.1186/s13148-018-0471-6
