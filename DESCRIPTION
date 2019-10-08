@@ -8,10 +8,10 @@ Authors@R: c(
     person("Pietro", "Ferrari", email = "ferrarip@iarc.fr", role = "aut"))
 Description: Performs the Principal Component Partial R-squared method (PC-PR2) on omics data and 
     corresponding metadata. PC-PR2 is a statistical method, developed by Fages et al. (2014), that 
-    investigates sources of variability in metabolomics or other omics data. It combines features 
+    investigates sources of variability in metabolomics or other omics data. In brief, it combines features 
     of principal component analysis and multivariable linear regression. The input is X, a complete 
-    matrix of omics data and Y, a corresponding data frame of subject metadata. The output is the 
-    proportion of variation in the omics data attributed to each Y-variable.
+    matrix of omics data and Z, a corresponding data frame of subject metadata. The output is a set of 
+    Rpartial2 values, or the proportion of variation in the omics data attributed to each Z-variable.
 Depends: R (>= 3.5.1)
 License: MIT
 Encoding: UTF-8
