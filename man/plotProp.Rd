@@ -2,17 +2,17 @@
 % Please edit documentation in R/runPCPR2.R
 \name{plotProp}
 \alias{plotProp}
-\title{Plot PC-PR2 output (to be deprecated in favour of an S3 class plot method)}
+\title{Plot PC-PR2 output (to be deprecated)}
 \usage{
-plotProp(Rpartial2, ...)
+plotProp(output, ...)
 }
 \arguments{
-\item{Rpartial2}{Named vector of partial R2 values generated from runPCPR2().}
-
 \item{...}{Other arguments passed to barplot().}
+
+\item{Rpartial2}{Named vector of partial R2 values generated from runPCPR2().}
 }
 \description{
-A wrapper for barplot() that plots PC-PR2 output.
+A wrapper for barplot() that plots PC-PR2 output. To shortly be deprecated in favour of an S3 class plot method.
 }
 \examples{
 plotProp(output)
