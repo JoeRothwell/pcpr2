@@ -5,7 +5,7 @@
 
 The PC-PR2 is a statistical method, developed by Fages et al. (1), for investigating sources of variability in metabolomics or other omics data (1,2). It combines features of principal component and multivariable linear regression analyses to estimate the relative effects of each of a set of Y-variables upon a large matrix of omics measurements. 
 
-The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete X-matrix of omics data and a corresponding set of descriptive Y-data (subject metadata) is passed to the main function `runPCPR2()`. The output is the proportion of variation in the omics data attributed to each Y-variable, expressed as R~partial~^2^. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
+The `pcpr2` R package has been created to simplify the analysis so it can easily be incorporated into larger workflows. To execute the analysis, a complete matrix of omics data, denoted X, and a corresponding table of subject metadata, denoted Z, are passed to the main function `runPCPR2()`. The main output is the proportion of variation in the omics data attributed to each Z-variable, expressed as R~partial~^2^. A barplot of these values can be quickly generated with the convenience function `plotProp()`.
 
 Test data, consisting of a sample of a transcriptomics dataset, is also included. This consists of five descriptive variables for the 124 subjects (two categorical, three numeric) and 3000 corresponding transcriptomics intensities.
 
