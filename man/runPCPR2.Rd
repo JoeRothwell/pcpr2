@@ -4,20 +4,20 @@
 \alias{runPCPR2}
 \title{The Principal Component R-squared method (PC-PR2)}
 \usage{
-runPCPR2(X, Y, pct.threshold = 0.8)
+runPCPR2(X, Z, pct.threshold = 0.8)
 }
 \arguments{
 \item{X}{A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.}
 
-\item{Y}{The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.}
+\item{Z}{The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.}
 
 \item{pct_threshold}{The proportion of variability desired to be explained. Defaults to 0.8.}
 }
 \description{
-Runs the PC-PR2 method on X, an omics matrix of intensities, and Y, the subject metadata to be assessed in the model.
+Runs the PC-PR2 method on X, an omics matrix of intensities, and Z, the subject metadata to be assessed in the model.
 }
 \examples{
-output <- runPCPR2(transcripts, Y_metadata)
+output <- runPCPR2(transcripts, Z_metadata)
 output
 }
 \keyword{analysis,}

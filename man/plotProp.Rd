@@ -2,7 +2,7 @@
 % Please edit documentation in R/runPCPR2.R
 \name{plotProp}
 \alias{plotProp}
-\title{Plot PC-PR2 output}
+\title{Plot PC-PR2 output (to be deprecated in favour of an S3 class plot method)}
 \usage{
 plotProp(Rpartial2, ...)
 }

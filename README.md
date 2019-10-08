@@ -31,7 +31,7 @@ A sample of transcriptomics data is provided as an example.
 
 ````r
 library(pcpr2)
-output <- runPCPR2(transcripts, Y_metadata, pct.threshold = 0.8)
+output <- runPCPR2(transcripts, Z_metadata, pct.threshold = 0.8)
 output
            sex         height         weight smoking.status     age.sample             R2 
     1.24647643     2.48569520     0.10218837     2.94946793     0.03072886     4.91513509 
