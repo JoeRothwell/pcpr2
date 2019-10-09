@@ -9,7 +9,7 @@ runPCPR2(X, Z, pct.threshold = 0.8)
 \arguments{
 \item{X}{A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.}
 
-\item{Z}{The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.}
+\item{Z}{A data frame of subject metadata, with the same number of rows as X, whose influence on the omics data is to be assessed. Categorical variables should be coded as factors.}
 
 \item{pct.threshold}{The proportion of variability desired to be explained. Defaults to 0.8.}
 }

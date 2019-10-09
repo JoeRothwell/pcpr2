@@ -12,7 +12,7 @@ plotProp(output, ...)
 \item{Rpartial2}{Named vector of partial R2 values generated from runPCPR2().}
 }
 \description{
-A wrapper for barplot() that plots PC-PR2 output. To shortly be deprecated in favour of an S3 class plot method.
+A wrapper for barplot() that plots PC-PR2 output. To shortly be replaced by an S3 class plot method.
 }
 \examples{
 plotProp(output)

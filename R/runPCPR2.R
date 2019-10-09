@@ -2,7 +2,7 @@
 #'
 #' Runs the PC-PR2 method on X, an omics matrix of intensities, and Z, the subject metadata to be assessed in the model.
 #' @param X A matrix of omics data. It is recommended that the data be appropriately scaled and log transformed if necessary.
-#' @param Z The metadata variables, with the same number of observations as X, whose influence on the omics data (X-matrix) is to be assessed. Categorical variables should be coded as factors.
+#' @param Z A data frame of subject metadata, with the same number of rows as X, whose influence on the omics data is to be assessed. Categorical variables should be coded as factors.
 #' @param pct.threshold The proportion of variability desired to be explained. Defaults to 0.8.
 #' @keywords pcpr2, Rpartial2, principal component analysis, pca, omics, metabolomics, transcriptomics
 #' @examples output <- runPCPR2(transcripts, Z_metadata)
@@ -112,7 +112,7 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
 
 #' Plot PC-PR2 output (to be deprecated)
 #'
-#' A wrapper for barplot() that plots PC-PR2 output. To shortly be deprecated in favour of an S3 class plot method.
+#' A wrapper for barplot() that plots PC-PR2 output. To shortly be replaced by an S3 class plot method.
 #' @param Rpartial2 Named vector of partial R2 values generated from runPCPR2().
 #' @param ... Other arguments passed to barplot().
 #' @examples plotProp(output)
