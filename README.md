@@ -28,7 +28,7 @@ You may be prompted to update other packages.
 
 PC-PR2 is performed using the function `runPCPR2()` which outputs an object of class `pcpr2` including partial R<sup>2</sup> values for each covariate. The variability in the omics data desired to be explained can be set with the argument `pct.threshold`, which is optional and defaults to 0.8.
 
-A sample of transcriptomics data is provided as an example.
+The package example is run as follows:
 
 ````r
 library(pcpr2)
@@ -44,7 +44,9 @@ For detailed output, use `summary()`.
 summary(output)
 ````
 
-To quickly plot a barplot, pass the pcpr2 object to `plot()`.
+#### Plotting the results
+
+To generate a barplot of the results, pass the pcpr2 object to `plot()`. The default is grey bars and no title, but the plot can be customised using other `barplot()` arguments.
 
 ````r
 plot(output, col = "red", main = "Variability in transcriptomics data explained by covariates")

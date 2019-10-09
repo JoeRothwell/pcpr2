@@ -14,11 +14,12 @@ runPCPR2(X, Z, pct.threshold = 0.8)
 \item{pct.threshold}{The proportion of variability desired to be explained. Defaults to 0.8.}
 }
 \value{
-Returns a list with 5 elements:
+Returns a list with 6 elements:
 \item{dimensions}{dimensions of the -omics matrix}
 \item{types}{data types for each Z-variable}
 \item{threshold}{the chosen variability to be explained}
 \item{pcn}{the number of principal components used for the chosen threshold}
+\item{anovaFit}{ANOVA output for each PC}
 \item{pR2}{Rpartial2 values for each Z-variable and the overall R2}
 }
 \description{

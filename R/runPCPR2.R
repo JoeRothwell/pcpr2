@@ -8,15 +8,16 @@
 #' @examples output <- runPCPR2(transcripts, Z_metadata)
 #' @examples output$pR2
 #' @export
-#' @return Returns a list with 5 elements:
+#' @return Returns a list with 6 elements:
 #' \item{dimensions}{dimensions of the -omics matrix}
 #' \item{types}{data types for each Z-variable}
 #' \item{threshold}{the chosen variability to be explained}
 #' \item{pcn}{the number of principal components used for the chosen threshold}
+#' \item{anovaFit}{ANOVA output for each PC}
 #' \item{pR2}{Rpartial2 values for each Z-variable and the overall R2}
 runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
 
-  # The following lines are not used but have been kept from the original script
+  # The following commented lines are not used but have been kept from the original script
   # Scaling and centering should now be done outside the analysis
   # Load the data in the X matrix containing NMR spectra and Z metadata containing the list of explanatory variables of interest
   #myPath <- "Documents/PCPR2/" Metabolomics_data <- "X_MetaboMatrix.TXT"
@@ -48,7 +49,6 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
   #ColNames1  <- c(ColNames, "Rmodel2")
 
   # Obtain eigenvectors
-  pct.threshold <- 0.8 # set variability desired to be explained
   X_DataMatrix_t <- t(X_DataMatrix)
   symMat <- X_DataMatrix %*% X_DataMatrix_t
   eigenData    <- eigen(symMat)
@@ -56,7 +56,7 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
   eigenVecMat  <- eigenData$vectors
   percents_PCs <- eigenVal/sum(eigenVal)
 
-  # Get number of PCs required for threshold (force min to 3)
+  # Set variability to be explained and get number of PCs required (force min to 3)
   my_counter_2 <- sum(1 - cumsum(rev(percents_PCs)) <= pct.threshold)
   if(my_counter_2 > 3) pc_n <- my_counter_2 else pc_n <- 3
 
@@ -104,6 +104,7 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
                  types = sapply(Z_Meta, class),
                  threshold = pct.threshold,
                  pcn = pc_n,
+                 anovaFit = multifit,
                  pR2 = pR2Sums)
   class(output) <- c("pcpr2", "list")
   return(output)
