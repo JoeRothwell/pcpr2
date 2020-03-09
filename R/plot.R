@@ -23,7 +23,7 @@ plot.pcpr2 <- function(x, ...){
   par(mar = c(6,5,4,2))
   bp <- barplot(unname(data),
           xlab = "",
-          ylab = "Weighted Rpartial2",
+          ylab = expression("Weighted Rpartial"^2),
           ylim = c(0, max(data) * 1.3),
           las = 2, ...)
   axis(1, at = bp, labels = c(names(data)), cex.axis = 0.8, las=2)
