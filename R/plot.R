@@ -19,8 +19,8 @@ plot.pcpr2 <- function(x, ...){
   if (!inherits(x, "pcpr2"))
     stop("Object must be of class 'pcpr2'")
   data <- x$pR2
-  opar <- par(no.readonly=TRUE)
-  par(mar=c(6,5,4,2))
+  opar <- par(mar = c(5.1,4.1,4.1,2.1))
+  par(mar = c(6,5,4,2))
   bp <- barplot(unname(data),
           xlab = "",
           ylab = "Weighted Rpartial2",
