@@ -19,4 +19,4 @@ LazyData: true
 Imports:
   car (>= 3.0.2),
   MetabolAnalyze (>= 1.3)
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
