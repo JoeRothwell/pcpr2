@@ -3,5 +3,4 @@
 S3method(plot,pcpr2)
 S3method(print,pcpr2)
 S3method(summary,pcpr2)
-export(plotProp)
 export(runPCPR2)

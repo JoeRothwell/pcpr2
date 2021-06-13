@@ -17,7 +17,7 @@
 #' \item{pR2}{Rpartial2 values for each Z-variable and the overall R2}
 runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
 
-  # The following commented lines are not used but have been kept from the original script
+  # The following commented lines are not used but have been kept from the original script.
   # Scaling and centering should now be done outside the analysis
   # Load the data in the X matrix containing NMR spectra and Z metadata containing the list of explanatory variables of interest
   #myPath <- "Documents/PCPR2/" Metabolomics_data <- "X_MetaboMatrix.TXT"
@@ -36,31 +36,42 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
   Z_Meta <- Z
 
   # Check arguments:
-            # X is a numeric matrix with no NAs
+  # X is a numeric matrix with no NAs
   stopifnot(is.numeric(X_DataMatrix),
             is.matrix(X_DataMatrix),
             !anyNA(X_DataMatrix),
-            # Same number of n for X and metadata
+  # Same number of n for X and metadata
             nrow(X_DataMatrix) == nrow(Z_Meta))
+
+  if(ncol(X_DataMatrix) < 4) {
+    warning(paste("Only", ncol(X_DataMatrix),
+                  "column(s) in your X matrix. Are you sure you need the PC-PR2?"))
+  }
 
   Z_MetaRowN <- nrow(Z_Meta)
   Z_MetaColN <- ncol(Z_Meta)
   ColNames   <- names(Z_Meta)
   #ColNames1  <- c(ColNames, "Rmodel2")
 
-  # Obtain eigenvectors
-  X_DataMatrix_t <- t(X_DataMatrix)
-  symMat <- X_DataMatrix %*% X_DataMatrix_t
-  eigenData    <- eigen(symMat)
-  eigenVal     <- eigenData$values
-  eigenVecMat  <- eigenData$vectors
-  percents_PCs <- eigenVal/sum(eigenVal)
+  # Obtain eigenvectors (the following hashed code not efficient for long matrices)
+  #X_DataMatrix_t <- t(X_DataMatrix)
+  #symMat <- X_DataMatrix %*% X_DataMatrix_t
+  #eigenData    <- eigen(symMat)
+  #eigenVal     <- eigenData$values
+  #eigenVecMat  <- eigenData$vectors
+  #percents_PCs <- eigenVal/sum(eigenVal)
 
   # Set variability to be explained and get number of PCs required (force min to 3)
-  my_counter_2 <- sum(1 - cumsum(rev(percents_PCs)) <= pct.threshold)
-  if(my_counter_2 > 3) pc_n <- my_counter_2 else pc_n <- 3
+  #my_counter_2 <- sum(1 - cumsum(rev(percents_PCs)) <= pct.threshold)
+  #if(my_counter_2 > 3) pc_n <- my_counter_2 else pc_n <- 3
 
-  pc_data_matrix <- eigenVecMat[, 1:pc_n ]
+  #pc_data_matrix <- eigenVecMat[, 1:pc_n ]
+
+  # The following (contributed by Vivian) is much faster for long matrices
+  respca         <- prcomp(X_DataMatrix, center = F, scale. = F)
+  pc_n           <- max(3, min(which(cumsum(respca$sdev^2)/ncol(X_DataMatrix) >= pct.threshold)))
+  eigenVal       <- respca$sdev^2
+  pc_data_matrix <- respca$x[, 1:pc_n ]
 
   #Perform linear multiple regression models on each eigenvector with factors of interest as explanatory variables
   #Categorical variables should be processed by as.factor, whereas continuous variables should not.
@@ -110,18 +121,3 @@ runPCPR2 <- function(X, Z, pct.threshold = 0.8) {
   return(output)
 }
 
-#' Plot PC-PR2 output (to be deprecated)
-#'
-#' A wrapper for barplot() that plots PC-PR2 output. To shortly be replaced by an S3 class plot method.
-#' @param Rpartial2 Named vector of partial R2 values generated from runPCPR2().
-#' @param ... Other arguments passed to barplot().
-#' @examples plotProp(output)
-#' @seealso \code{\link{barplot}} which this function wraps.
-#' @export
-plotProp <- function(output, ...) {
-  bp <- barplot(unname(Rpartial2), ylab = "Weighted Rpartial2", ylim = c(0, max(Rpartial2) * 1.3),
-                xlab = "", col = "red", las=2, ...)
-  axis(1, at = bp, labels = c(names(Rpartial2)), cex.axis = 0.8, las=2)
-  rounded <- round(Rpartial2, 3)
-  text(bp, Rpartial2, labels = rounded, pos = 3, cex = 0.8)
-}

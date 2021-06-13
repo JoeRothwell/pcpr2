@@ -1,10 +1,11 @@
 Package: pcpr2
 Title: The Principal Component Partial R-squared method (PC-PR2)
-Version: 0.0.0.9000
+Version: 0.0.0.1
 Authors@R: c(
     person("Joseph", "Rothwell", email = "joerothwell1@gmail.com", role = c("aut", "cre")),
     person("Anne", "Fages", role = "aut"),
     person("Nada", "Assi", email = "nada.maria.a@gmail.com", role = "aut"),
+    person("Vivian", "Viallon", email = "viallonv@iarc.fr", role = "aut"),
     person("Pietro", "Ferrari", email = "ferrarip@iarc.fr", role = "aut"))
 Description: Performs the Principal Component Partial R-squared method (PC-PR2) on omics data and 
     corresponding metadata. PC-PR2 is a statistical method, developed by Fages et al. (2014), that 
@@ -12,11 +13,11 @@ Description: Performs the Principal Component Partial R-squared method (PC-PR2) 
     of principal component analysis and multivariable linear regression. The input is X, a complete 
     matrix of omics data and Z, a corresponding data frame of subject metadata. The output is a set of 
     Rpartial2 values, or the proportion of variation in the omics data attributed to each Z-variable.
-Depends: R (>= 3.5.1)
+Depends: R (>= 3.6.3)
 License: MIT
 Encoding: UTF-8
 LazyData: true
 Imports:
   car (>= 3.0.2),
   MetabolAnalyze (>= 1.3)
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.1
